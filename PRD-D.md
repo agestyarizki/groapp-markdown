@@ -4790,10 +4790,6 @@ flowchart TD
     E --> F{Terdapat error teknis saat menonaktifkan unit usaha?}
     F -->|Ya| G[Sistem menampilkan error sesuai fallback page]
     F -->|Tidak| H([Lanjut ke Happy Flow])
-    %% Journey Flow
-    I["Journey: A → B → C → D → E → F → H"]
-    H --> I
-
 ```
 
 ---
