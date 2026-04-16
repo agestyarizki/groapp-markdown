@@ -3,7 +3,7 @@
 **Group:** D
 **Dibuat oleh:** SS Shania Saraswati
 **Diperbarui Oleh:** Dimas Sul'ulum
-**Terakhir Diperbarui:** Thu, 16 Apr 2026, 14:13
+**Terakhir Diperbarui:** Thu, 16 Apr 2026, 15:06
 
 ---
 
@@ -42,29 +42,61 @@
 
 ### Konteks
 
-Belum tersedia
+GroApp sedang membangun ekosistem ERP yang terdiri dari beberapa aplikasi yang saling terintegrasi, di mana data Perusahaan dan Unit Usaha digunakan lintas aplikasi. Untuk mendukung kebutuhan tersebut, diperlukan mekanisme pengelolaan data yang terpusat di Groapp Access sebagai sumber kebenaran, dengan struktur yang mampu menampung lebih dari satu Perusahaan dalam satu Ruang Kerja serta lebih dari satu Unit Usaha dalam satu Perusahaan.
 
 ### Pain Point
 
-Belum tersedia
+Saat ini belum tersedia mekanisme terpusat yang mengelola Ruang Kerja, Perusahaan, dan Unit Usaha sebagai satu kesatuan struktur organisasi yang dapat digunakan bersama oleh seluruh aplikasi dalam ekosistem GroApp. Tanpa struktur ini, kepemilikan banyak perusahaan oleh satu pengguna serta pengelolaan akses lintas perusahaan dan unit usaha berpotensi didefinisikan berbeda di tiap aplikasi.
 
 ### Dampak
 
-Belum tersedia
+Tanpa satu sumber data perusahaan yang konsisten dan terpusat, aplikasi lain berpotensi menggunakan definisi dan versi data yang berbeda. Hal ini menyebabkan duplikasi data, inkonsistensi informasi, serta meningkatkan risiko penyesuaian ulang saat integrasi lintas aplikasi dilakukan.
 
 ### Validasi
 
-Belum tersedia
+Kebutuhan akan pengelolaan perusahaan dan unit usaha yang terpusat terlihat dari adanya kebutuhan aplikasi lain dalam ekosistem GroApp untuk menggunakan data perusahaan dan unit usaha yang sama sebagai dasar operasional, terutama pada proses integrasi dan pengaturan awal penggunaan aplikasi.
 
 ## Goal Epik
 
-
+Epic ini bertujuan menyediakan mekanisme pengelolaan Ruang Kerja, Perusahaan, dan Unit Usaha di Groapp Access sebagai master data terpusat dan satu-satunya sumber referensi resmi yang digunakan oleh seluruh aplikasi dalam ekosistem GroApp, termasuk Groapp Accounting. Dalam struktur ini, Ruang Kerja menjadi wadah organisasi yang dapat memiliki lebih dari satu Perusahaan, dan setiap Perusahaan dapat memiliki lebih dari satu Unit Usaha. Groapp Access berperan sebagai sistem otoritatif yang mengelola dan menyimpan seluruh data entitas tersebut, sehingga setiap perubahan—seperti perubahan nama Perusahaan atau Unit Usaha—dilakukan melalui Groapp Access dan secara otomatis tersinkronisasi serta menjadi referensi yang digunakan oleh aplikasi lain. Aplikasi lain menggunakan referensi entitas dari GroApp Access dan tidak mendefinisikan ulang struktur tersebut, sehingga tidak terjadi duplikasi data, inkonsistensi informasi, maupun perbedaan versi antar aplikasi.
+Aktivitas nyata yang didukung
+Membuat Ruang Kerja
+Melihat daftar dan detail Ruang Kerja
+Menambah dan mengubah data Perusahaan 
+Melihat daftar dan detail Perusahaan
+Menambah dan mengubah data Unit Usaha
+Melihat daftar dan detail Unit Usaha
 
 ## In Scope Epik
 
+1. Membuat Ruang Kerja
+2. Mengubah data Ruang Kerja
+3. Menambahkan perusahaan ke dalam Ruang Kerja
+4. Menampilkan daftar perusahaan berdasarkan Ruang Kerja
+5. penghapusan ruang kerja
+6. Pembuatan perusahaan
+7. Perubahan data perusahaan
+8. Melihat daftar perusahaan
+9. Melihat detail perusahaan
+10. hapus perusahaan
+11. Pembuatan unit usaha di bawah perusahaan
+12. Perubahan data unit usaha
+13. Melihat daftar unit usaha
+14. Melihat detail unit usaha
+15. menghapus data unit usaha
+16. status aktif/non aktif unit usaha
+17. Deletion Impact Analyzer → Menampilkan “Lihat dampak” (counts/relasi) sebelum delete/nonaktif
+18. Progressive Profiling Orchestrator → (progressive profiling) untuk Company/Unit tanpa memblokir setup awal.
+19. Destructive Action Confirmation Gate →Konfirmasi delete dengan mekanisme “type-to-confirm” dimana user harus mengetik nama item (perusahaan/unit) sebelum delete.
 
 ## Out of Scope Epik
 
+1. Struktur organisasi tingkat lanjut (divisi, departemen, jabatan)
+2. Workflow approval berdasarkan struktur organisasi
+3. Integrasi dengan sistem pemerintah (OSS, DJP, e-NIK)
+4. Analytics & reporting kinerja perusahaan/unit
+5. Pengaturan role & permission detail (epik Manajemen Pengguna & Peran)
+6. Switching perusahaan & unit (ada di aplikasi ERP, bukan IAM)
 
 ## Indikator Keberhasilan Epic
 
@@ -103,7 +135,179 @@ Belum tersedia
 
 ## Informasi Tambahan
 
+Nilai Strategis Epic
+Epic ini memiliki peran strategis sebagai fondasi struktur bisnis dalam ekosistem GroApp. Pengelolaan Ruang Kerja, Perusahaan, dan Unit Usaha bukan sekadar fitur administratif tambah–ubah data, melainkan dasar utama yang menopang seluruh modul GroApp. 
+Dengan struktur multi-Perusahaan dan multi-Unit Usaha dalam satu Ruang Kerja, GroApp Access memungkinkan satu akun mengelola lebih dari satu bisnis atau sektor usaha tanpa perlu membuat akun terpisah. Pendekatan ini secara langsung mendukung kebutuhan pengelolaan multi-bisnis dan multi-sektor.
+Melalui fondasi ini, GroApp tidak hanya menyediakan fitur pengelolaan entitas, tetapi membangun kerangka struktur organisasi yang konsisten, scalable, dan siap mendukung pengembangan modul-modul lanjutan di masa depan.
+Struktur & Prinsip Entitas Bisnis
+1. Definisi Entitas
+Ruang Kerja (Workspace)
+Definisi: Level tertinggi dalam ekosistem GroApp yang berfungsi sebagai wadah utama (kontainer) seluruh aktivitas bisnis seorang pelanggan atau satu grup akun.
+Peran dalam Sistem: Menjadi batas isolasi data paling luar.
+Aturan Bisnis:
+Satu akun dapat memiliki banyak Ruang Kerja
+Data antar-Ruang kerja tidak dapat saling mengakses secara default (Isolasi total).
+Satu Workspace dapat memiliki satu atau banyak Perusahaan.
+Perusahaan  
+Definisi: Merupakan entitas hukum yang memiliki identitas resmi di mata negara.
+Peran dalam Sistem: Menjadi identitas resmi untuk kebutuhan administrasi dan legalitas. Informasi seperti NPWP, alamat kantor pusat, dan logo perusahaan untuk dokumen resmi dikelola di sini.
+Aturan Bisnis :
+Perusahaan harus berada di dalam Ruang kerja (tidak boleh berdiri sendiri).
+Satu Perusahaan dapat memiliki satu atau banyak Unit Usaha.
+Unit Usaha
+Definisi: Merupakan bagian atau area operasional yang berada di bawah naungan sebuah Perusahaan yang menjalankan aktivitas transaksi harian.
+Peran dalam Sistem: Menjadi konteks utama dalam setiap transaksi operasional (seperti penjualan di kasir, pengelolaan stok di gudang tertentu, atau absensi karyawan di cabang).
+Aturan Bisnis:
+Unit Usaha harus merujuk pada satu Perusahaan induk (tidak boleh langsung ke Workspace).
+Unit Usaha adalah level terendah dalam struktur hirarki saat ini (Flat structure).
 
+2. Struktur Relasi Entitas
+Struktur relasi dalam sistem adalah:
+Ruang Kerja → Perusahaan → Unit Usaha
+Aturan yang berlaku pada versi MVP:
+Satu Ruang Kerja dapat memiliki banyak Perusahaan.
+Satu Perusahaan dapat memiliki banyak Unit Usaha.
+Perusahaan tidak dapat memiliki Perusahaan lain di bawahnya.
+Unit Usaha tidak dapat memiliki Unit Usaha lain di bawahnya.
+Struktur bersifat flat dan tidak mendukung parent–child tambahan.
+INFO PENTING
+Struktur bertingkat (holding atau sub-unit) belum tersedia pada versi MVP tapi secara arsitektur perlu disiapkan agar kedepannya jika melakukan enable kebutuhan holding atau sub-unit Tim tidak perlu melakukan revamp besar besaran
+Prinsip Isolasi Data dan Batas Akses Ruang Kerja
+Setiap Ruang Kerja merupakan batas isolasi data yang terpisah secara logis dalam sistem. Data yang berada di dalam satu Ruang Kerja tidak dapat diakses, dilihat, maupun digunakan oleh Ruang Kerja lain.
+Isolasi ini juga berlaku pada level pengguna. Seorang pengguna hanya dapat melihat dan mengakses Ruang Kerja yang secara eksplisit terdaftar atas dirinya atau yang telah diberikan akses kepadanya.
+Sebagai contoh:
+Budi memiliki Ruang Kerja X.
+Sarah memiliki Ruang Kerja Y.
+Budi tidak dapat melihat keberadaan Ruang Kerja Y maupun data di dalamnya. Demikian pula, Sarah tidak dapat melihat Ruang Kerja X beserta seluruh struktur Perusahaan dan Unit Usaha yang ada di dalamnya.
+Akses terhadap data di dalam Ruang Kerja hanya diberikan kepada pengguna yang memiliki kepemilikan atau peran (role) yang sah dalam Ruang Kerja tersebut. 
+
+3. Prinsip Single Source of Truth
+GroApp Access adalah satu-satunya sistem yang mengelola data Ruang Kerja, Perusahaan, dan Unit Usaha.
+Artinya:
+Perubahan data entitas dilakukan hanya melalui GroApp Access.
+Modul lain dalam ekosistem GroApp menggunakan referensi entitas dari GroApp Access.
+Modul lain tidak diperbolehkan membuat definisi entitas sendiri.
+Tidak ada duplikasi data entitas lintas modul.
+Sekilas Info
+GroApp Access hanya menyediakan struktur dan identitas entitas.
+GroApp Access tidak mengelola logika bisnis keuangan, konsolidasi laporan, atau perhitungan akuntansi. 
+
+4. Prinsip Desain Sistem
+Struktur entitas dirancang dengan prinsip berikut:
+Tim perlu mempersiapkan struktur yang memungkinkan penambahan bentuk organisasi yang lebih kompleks di masa depan, seperti struktur perusahaan bertingkat (holding dan sub-company) atau hierarki Unit Usaha yang lebih dalam, tanpa memerlukan perubahan mendasar pada model data utama.
+Pada versi MVP, fitur struktur bertingkat tersebut belum diaktifkan. Namun, desain arsitektur saat ini telah disiapkan agar pengembangan lanjutan dapat dilakukan tanpa perombakan ulang model data inti.
+Contoh struktur Ruang kerja, perusahaan & unit usaha MVP
+
+Struktur & Batasan Data (Fase MVP)
+Untuk fase ini, sistem mendukung fleksibilitas penuh secara horizontal (melebar). Artinya, pengguna bisa menambah entitas sebanyak mungkin tanpa batasan jumlah.
+
+Contoh  struktur Ruang kerja, perusahaan & unit usaha di Masa depan
+
+Pada fase berikutnya, GroApp Access akan menghadirkan fitur pencatatan kepemilikan saham antar PT. Fitur ini memungkinkan pengguna untuk mencatat persentase kepemilikan saham suatu PT terhadap PT lain — baik PT yang terdaftar di GroApp maupun yang tidak.
+Dari data kepemilikan inilah sistem akan dapat menentukan relasi pengendali dan yang dikendalikan antar PT, tanpa perlu mengubah struktur hierarki di aplikasi. Pendekatan ini dipilih karena relasi antar PT dalam dunia bisnis nyata bersifat fleksibel — kepemilikan bisa parsial, bisa melibatkan lebih dari satu pemegang saham, dan bisa berubah sewaktu-waktu — sehingga tidak tepat jika direpresentasikan sebagai struktur parent-child yang kaku.
+Informasi Tambahan Untuk pemahaman Holding
+1. Apa itu Holding?
+Secara sederhana, Holding (Perusahaan Induk) adalah sebuah perusahaan besar yang tujuan utamanya adalah memiliki saham di perusahaan-perusahaan lain (anak perusahaan).
+Holding biasanya tidak menjalankan operasional teknis (seperti jualan kopi atau rakit motor) secara langsung.
+Tugas Holding adalah konsolidasi: memantau keuangan seluruh grup, mengatur strategi besar, dan mengelola aset.
+2. Realita di Dunia Nyata: Seberapa Dalam?
+
+Kesimpulan untuk Arsitektur 
+
+Skenario MVP jika satu perusahaan dimiliki lebih dari 1 orang
+Dalam skenario co-founder, PT didaftarkan ke dalam Ruang Kerja salah satu founder berdasarkan kesepakatan kedua pihak di luar sistem. GroApp tidak mengatur dan tidak memihak dalam kesepakatan ini. Yang dijamin oleh sistem adalah bahwa founder lain dapat diinvite sebagai Owner dengan hak akses yang setara — karena satu PT di GroApp dapat memiliki lebih dari satu Owner.
+Skenario masadepan jika Perusahaan berinvestasi di perusahaan lain
+Ke depannya, sebuah perusahaan akan dapat dimasukkan ke lebih dari satu Ruang Kerja sesuai kebutuhan pengelompokan masing-masing owner. Fitur ini dirancang untuk mengakomodasi skenario di mana seorang investor ingin melihat perusahaan yang ia investasikan berdampingan dengan perusahaan lain yang ia kelola dalam satu Ruang Kerja.
+Prinsip yang dijaga dalam fitur ini adalah data perusahaan tetap terpusat dan hanya ada satu sumber kebenaran — perusahaan yang muncul di beberapa Ruang Kerja bukan salinan data, melainkan akses ke data yang sama. Perubahan apapun pada data perusahaan akan langsung tercermin di semua Ruang Kerja yang menampilkan perusahaan tersebut.
+5. Cakupan Skala dan Kompleksitas Bisnis
+Istilah “mikro–makro” dan cakupan jenis usaha perlu dijelaskan agar tidak menimbulkan persepsi bahwa GroApp hanya cocok untuk bisnis kecil atau hanya untuk jenis usaha tertentu.
+Definisi Skala Bisnis dalam Konteks GroApp
+Dalam konteks struktur Ruang Kerja → Perusahaan → Unit Usaha:
+Usaha Mikro: Satu Perusahaan dengan satu atau beberapa Unit Usaha
+Usaha Kecil–Menengah: Beberapa Perusahaan dalam satu Ruang Kerja dan satu Perusahaan dengan banyak Unit Usaha
+Usaha Skala Besar / Enterprise Kompleks: Struktur bertingkat seperti holding, sub-holding, dan multi-level entitas operasional.
+
+Cakupan Jenis Usaha
+Secara struktur sistem, model Ruang Kerja → Perusahaan → Unit Usaha tidak membatasi jenis usaha tertentu. Struktur ini dapat digunakan untuk berbagai tipe bisnis, termasuk:
+Jasa
+Reteil
+Manufaktur
+Pada tampilan UI saat ini, jenis usaha yang ditampilkan masih terbatas Jasa saja. Namun secara desain arsitektur, sistem tidak dibatasi hanya untuk jenis usaha tersebut tapi disiapkan juga untuk mendukung kebutuhan bisnis dengan kompleksitas lebih tinggi, termasuk usaha manufaktur yang memiliki banyak unit operasional.
+
+Posisi GroApp Saat Ini
+Pada fase MVP, struktur organisasi dibatasi hingga tiga level utama:
+Ruang Kerja → Perusahaan → Unit Usaha.
+Model ini dirancang untuk mencakup mayoritas kebutuhan bisnis di pasar Indonesia, khususnya usaha mikro, kecil, dan menengah hingga grup usaha skala menengah.
+Struktur holding bertingkat (Perusahaan di bawah Perusahaan) maupun hierarki multi-level yang lebih kompleks belum menjadi bagian dari ruang lingkup saat ini.
+
+Arah Pengembangan di Masa Depan
+Secara arsitektur, Tim dapat mempersiapkan arsitektur yang dapat dikembangkan menuju struktur organisasi yang lebih kompleks, seperti:
+Holding dan sub-holding
+Perusahaan anak di bawah Perusahaan induk
+Hierarki Unit Usaha yang lebih dalam
+Pengembangan tersebut tidak memerlukan perombakan ulang model data inti, melainkan aktivasi dan perluasan struktur yang telah dipersiapkan sejak awal.
+Dengan pendekatan ini, GroApp saat ini berada pada posisi kuat untuk mendukung bisnis mikro hingga menengah secara optimal, sekaligus memiliki kesiapan arsitektural untuk berkembang menuju kebutuhan struktur bisnis yang lebih kompleks di masa depan.
+Batasan Domain GroApp Access dan GroApp Accounting
+1. Tanggung Jawab GroApp Access
+GroApp Access bertanggung jawab atas:
+Pengelolaan struktur entitas:
+Ruang Kerja
+Perusahaan
+Unit Usaha
+Pengelolaan identitas dasar entitas (nama, status aktif/nonaktif, dan informasi umum lainnya).
+Pengaturan akses pengguna terhadap entitas sesuai peran yang berlaku.
+GroApp Access tidak melakukan pengolahan data keuangan.
+
+2. Tanggung Jawab GroApp Accounting
+GroApp Accounting bertanggung jawab atas:
+Pengelolaan Chart of Accounts (COA).
+Pencatatan dan pemrosesan transaksi keuangan.
+Penyusunan laporan keuangan.
+Konsolidasi laporan keuangan antar entitas.
+Pengelolaan informasi investor dan pembagian dividen.
+Kaitan Groapp Access dengan Groapp Accounting
+Negara menetukan standar akutansi. contoh:
+indonesia menggunakan standar akutansi PSAK → yang dibangun sekarang
+Singapore & Filipin menggunakan standar akutansi IFRS
+informasi lain akan disampaikan ketika modul groapp accounting dibuat
+Jenis Usaha Menentikan Tempate COA apa yang digunakan. info tambahan :
+5 COA Dasar yang pasti ada di berbagai jenis usaha, yang membedakan nanti hanyalah seberapa banyak sub-sub/cabang cabang dari COA dasarnya:
+Aset (Harta) → Kas & Bank, Piutang Usaha, Persediaan, Aset tetap.
+Liabilitas (Kewajiban/Utang)→ Utang Usaha, Utang Bank, Utang Gaji, Pendapatan Diterima Dimuka (DP)
+Ekuitas (Modal) →Modal Disetor, Laba Ditahan, Prive/Dividen
+Pedapatan (Revenue) →Pendapatan Jasa, Pendapatan Barang, Pendapatan Bunga
+Beban (Expenses) → beban gaji, beban sewa, Hpp, beban listrik & air
+
+3. Prinsip Integrasi
+GroApp Accounting menggunakan struktur entitas yang dikelola oleh GroApp Access sebagai referensi.
+GroApp Accounting tidak mendefinisikan ulang Ruang Kerja, Perusahaan, atau Unit Usaha.
+Setiap perubahan struktur entitas dilakukan melalui GroApp Access.
+Ringkasan Kesiapan Fitur untuk Go-To-Market
+Untuk menghindari miskomunikasi dalam proses pemasaran dan implementasi, berikut batasan fitur yang tersedia pada fase MVP:
+Fitur yang Tersedia Saat Ini
+Struktur hingga tiga level: Ruang Kerja → Perusahaan → Unit Usaha.
+Pengelolaan banyak Perusahaan dalam satu Ruang Kerja.
+Pengelolaan banyak Unit Usaha dalam satu Perusahaan.
+Isolasi data antar Ruang Kerja.
+Integrasi referensi entitas sebagai Single Source of Truth untuk seluruh modul GroApp.
+Fitur yang Belum Tersedia pada MVP
+Struktur holding bertingkat (Perusahaan di bawah Perusahaan).
+Hierarki Unit Usaha lebih dari satu level.
+Struktur organisasi multi-level kompleks (sub-holding, dll).
+Arsitektur sistem telah dirancang untuk memungkinkan pengembangan struktur bertingkat di masa depan, namun fitur tersebut belum dapat dijual atau diimplementasikan pada fase saat ini.
+Desain Permission dalam Struktur Entitas
+Akses pengguna diberikan pada level Perusahaan. Artinya, pengguna hanya dapat masuk ke Perusahaan yang mengundangnya.
+Namun, akses ke data operasional dibatasi lebih lanjut pada level Unit Usaha. Seorang pengguna yang sudah memiliki akses ke suatu Perusahaan tidak otomatis dapat melihat semua Unit Usaha di dalamnya. Owner/Admin Perusahaan harus menentukan Unit Usaha mana saja yang boleh diakses oleh pengguna tersebut.
+Dengan prinsip ini:
+Pengguna hanya melihat Unit Usaha yang diberikan akses.
+Data antar Unit Usaha dapat dipisahkan sesuai kebutuhan operasional.
+Model akses tetap dapat dikembangkan apabila struktur organisasi menjadi lebih kompleks di masa depan, dan diselaraskan dengan dokumen Eksplorasi Manajemen Peran agar tidak terjadi duplikasi atau konflik model.
+Data pendukung keputusan Owner/Admin Perusahaan harus menentukan Unit Usaha mana saja yang boleh diakses oleh pengguna tersebut:
+
+Kesimpulan
+Struktur entitas dalam GroApp Access dirancang untuk dapat berkembang dari model flat (Ruang Kerja → Perusahaan → Unit Usaha) menjadi struktur bertingkat di masa depan apabila kebutuhan bisnis meningkat.
+Perubahan struktur organisasi tersebut tidak hanya berdampak pada model data entitas, tetapi juga pada cara sistem mengatur hak akses pengguna terhadap entitas tersebut.
+Karena itu, desain permission harus mempertimbangkan kemungkinan perubahan struktur sejak awal.
 
 ## Planned Features
 
@@ -412,8 +616,13 @@ flowchart TD
     O["**(Sistem)**\nMenampilkan halaman preview\nentitas yang telah dibuat"]:::sistem
     P["**(Pengguna)**\nKlik Simpan"]:::userStory
     Q["**(Sistem)**\nMenampilkan notifikasi sukses"]:::userStory
-    END_NODE(["**(Sistem)**\nMenampilkan halaman\ndetail perusahaan"]):::endNode
+    END_NODE(["**(Sistem)**\nMenampilkan halaman\ndetail perusahaan"]):::end
     START --> A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K --> L --> M --> N --> O --> P --> Q --> END_NODE
+    classDef start fill:#29ABE2,stroke:none,color:#fff,rx:20
+    classDef pengguna fill:#29ABE2,stroke:none,color:#fff
+    classDef sistem fill:#27AE60,stroke:none,color:#fff
+    classDef userStory fill:#27AE60,stroke:#F5A623,stroke-width:3px,color:#fff
+    classDef end fill:#E74C3C,stroke:none,color:#fff,rx:20
 ```
 
 ---
@@ -1620,7 +1829,7 @@ Fitur Tambah Perusahaan bertujuan memberikan cara bagi pengguna untuk menambahka
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan])
     B["(Pengguna)<br/>Klik Switcher di sidebar"]
     C["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
     D["(Pengguna)<br/>Klik button titik 3"]
@@ -1630,8 +1839,14 @@ flowchart TD
     H["(Pengguna)<br/>Mengisi data perusahaan"]
     I["(Pengguna)<br/>Klik Tambah Perusahaan"]
     J["(Sistem)<br/>Menampilkan notifikasi sukses"]
-    K(["End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan"])
+    K([End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan])
     A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff;
+    classDef end fill:#f4511e,stroke:#f4511e,color:#fff;
+    class A start;
+    class B,C,D,E,F,G,H,I,J process;
+    class K end;
 ```
 
 ---
@@ -1669,14 +1884,27 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Klik Tambah Perusahaan"]
+    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Form Tambah Perusahaan"]
+    F[/User Story/]
     G["(Pengguna)<br/>Mengisi data perusahaan"]
+    H[/User Story/]
     I["(Pengguna)<br/>Klik Tambah Perusahaan"]
+    J[/User Story/]
     K["(Sistem)<br/>Menampilkan pesan sukses"]
-    L(["End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan"])
-    A --> C --> E --> G --> I --> K --> L;
+    L([End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan])
+    A --> C --> E --> G --> I --> K --> L
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,E,G,I,K process;
+    class L end;
+    class B,D,F,H,J tag;
 ```
 
 ---
@@ -2064,15 +2292,29 @@ Aksi mengedit nama ruang kerja
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Klik Switcher di sidebar"]
+    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
+    F[/User Story/]
     G["(Pengguna)<br/>Klik button titik 3"]
+    H[/User Story/]
     I["(Sistem)<br/>Menampilkan dropdown menu"]
+    J[/User Story/]
     K["(Pengguna)<br/>Klik menu Daftar Perusahaan"]
+    L[/User Story/]
     M["(Sistem)<br/>Menampilkan halaman daftar Perusahaan"]
-    N(["End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan"])
-    A --> C --> E --> G --> I --> K --> M --> N;
+    N([End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan])
+    A --> C --> E --> G --> I --> K --> M --> N
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,E,G,I,K,M process;
+    class N end;
+    class B,D,F,H,J,L tag;
 ```
 
 ---
@@ -2081,11 +2323,16 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Klik Switcher di sidebar"]
+    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
+    F[/User Story/]
     G["(Pengguna)<br/>Klik button titik 3"]
+    H[/User Story/]
     I["(Sistem)<br/>Menampilkan dropdown menu"]
+    J[/User Story/]
     K["(Pengguna)<br/>Klik menu Daftar Perusahaan"]
     L{{"Status akses user ke<br/>Daftar Perusahaan<br/>masih valid?"}}
     M["(Sistem)<br/>Menampilkan pesan error yang sesuai"]
@@ -2096,7 +2343,18 @@ flowchart TD
     L -- Tidak --> M
     L -- Ya --> N
     N -- Ya --> O
-    N -- Tidak --> P;
+    N -- Tidak --> P
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
+    classDef error fill:#f4511e,stroke:#f4511e,color:#fff;
+    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,E,G,I,K,M,O process;
+    class L,N decision;
+    class P link;
+    class B,D,F,H,J tag;
 ```
 
 ---
@@ -2105,13 +2363,25 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Klik profil akun"]
+    D[/User Story/]
     E["(Sistem)<br/>Menampilkan dropdown menu"]
+    F[/User Story/]
     G["(Pengguna)<br/>Klik menu daftar perusahaan"]
+    H[/User Story/]
     I["(Sistem)<br/>Menampilkan halaman daftar Perusahaan"]
-    J(["End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan"])
+    J([End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan])
     A --> C --> E --> G --> I --> J
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,E,G,I process;
+    class J end;
+    class B,D,F,H tag;
 ```
 
 ---
@@ -2334,9 +2604,11 @@ Perusahaan aktif (dipilih dari Daftar Perusahaan)
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Memilih salah satu Perusahaan<br/>dari Daftar Perusahaan"]
     D{{"Status akses user ke<br/>perusahaan masih valid?"}}
+    E[/User Story/]
     F["(Sistem)<br/>Menampilkan Pesan error"]
     G{{"Terdapat error teknis saat<br/>memuat detail perusahaan?"}}
     H["(Sistem)<br/>Tampilkan error sesuai<br/>Fallback Page di Gen Spec"]
@@ -2345,7 +2617,17 @@ flowchart TD
     D -- Tidak --> F
     D -- Ya --> G
     G -- Ya --> H
-    G -- Tidak --> I;
+    G -- Tidak --> I
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
+    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,F,H process;
+    class D,G decision;
+    class I link;
+    class B,E tag;
 ```
 
 ---
@@ -2354,11 +2636,21 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman Daftar Perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman Daftar Perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Memilih salah satu Perusahaan<br/>dari Daftar Perusahaan"]
+    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Halaman Detail Perusahaan"]
-    F(["End<br/>(Pengguna)<br/>Melihat halaman detail perusahaan"])
-    A --> C --> E --> F;
+    F([End<br/>(Pengguna)<br/>Melihat halaman detail perusahaan])
+    A --> C --> E --> F
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,E process;
+    class F end;
+    class B,D tag;
 ```
 
 ---
@@ -2620,9 +2912,10 @@ Sistem menyimpan dan menggunakan data perusahaan terbaru sebagai sumber kebenara
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
     B["(Pengguna)<br/>Klik Profil Perusahaan"]
     C["(Sistem)<br/>Menampilkan halaman profil perusahaan"]
+    D[/User Story/]
     E["(Pengguna)<br/>Klik Edit pada section data"]
     F["(Sistem)<br/>Tampilkan Mode Edit"]
     G["(Pengguna)<br/>Mengubah data"]
@@ -2632,6 +2925,7 @@ flowchart TD
     K["(Sistem)<br/>Menampilkan informasi tidak tersimpan<br/>dan kembali ke view mode"]
     L([End<br/>Perubahan dibatalkan])
     M{{"Data/struktur perusahaan<br/>valid?"}}
+    N[/User Story/]
     O["(Sistem)<br/>Menampilkan pesan validasi error<br/>dan field yang perlu diperbaiki"]
     P{{"Terdapat error teknis<br/>saat menyimpan?"}}
     Q["(Sistem)<br/>Tampilkan error sesuai<br/>Fallback Page di Gen Spec"]
@@ -2642,7 +2936,19 @@ flowchart TD
     M -- Tidak --> O
     M -- Ya --> P
     P -- Ya --> Q
-    P -- Tidak --> R;
+    P -- Tidak --> R
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
+    classDef endnode fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class B,C,E,F,G,I,J,K,O,Q process;
+    class H,M,P decision;
+    class L endnode;
+    class R link;
+    class D,N tag;
 ```
 
 ---
@@ -2651,19 +2957,32 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Klik Profil Perusahaan"]
     D["(Sistem)<br/>Menampilkan halaman profil<br/>perusahaan view mode"]
+    E[/User Story/]
     F["(Pengguna)<br/>Klik Edit pada section<br/>data profil perusahaan"]
     G["(Sistem)<br/>Tampilkan Mode Edit pada<br/>section yang diklik"]
+    H[/User Story/]
     I["(Pengguna)<br/>Mengubah data"]
+    J[/User Story/]
     K["(Pengguna)<br/>Klik Simpan Perubahan"]
     L["(Sistem)<br/>Menampilkan modal konfirmasi perubahan"]
+    M[/User Story/]
     N["(Pengguna)<br/>Klik Konfirmasi"]
     O["(Sistem)<br/>Simpan perubahan"]
     P["(Sistem)<br/>Tampilkan feedback sukses"]
-    Q(["End<br/>(Sistem)<br/>Kembali ke View Mode dengan data terbaru"])
-    A --> C --> D --> F --> G --> I --> K --> L --> N --> O --> P --> Q;
+    Q([End<br/>(Sistem)<br/>Kembali ke View Mode dengan data terbaru])
+    A --> C --> D --> F --> G --> I --> K --> L --> N --> O --> P --> Q
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,D,F,G,I,K,L,N,O,P process;
+    class Q end;
+    class B,E,H,J,M tag;
 ```
 
 ---
@@ -2998,15 +3317,20 @@ dengan adanya fitur non aktifkan perusahaan ini jika ada user yang mau menghapus
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Klik spot Hapus Perusahaan"]
+    D[/User Story/]
     E["(Sistem)<br/>Menampilkan ringkasan dampak penghapusan"]
     F["(Pengguna)<br/>Menekan tombol setuju hapus perusahaan"]
     G["(Pengguna)<br/>Mengetik Nama Perusahaan sebagai konfirmasi"]
+    H[/User Story/]
     I["(Pengguna)<br/>Klik tombol konfirmasi"]
     J{{"Perusahaan telah<br/>memiliki transaksi?"}}
+    K[/User Story/]
     K2["(Sistem)<br/>Menampilkan pesan tidak dapat menghapus<br/>perusahaan karena memiliki transaksi terkait"]
     L{{"Unit sudah di-assign ke perusahaan<br/>dan memiliki transaksi?"}}
+    M[/User Story/]
     M2["(Sistem)<br/>Menampilkan pesan tidak dapat menghapus<br/>perusahaan karena Unit sudah memiliki transaksi"]
     N{{"Terdapat error teknis saat<br/>Penghapusan Perusahaan?"}}
     O["(Sistem)<br/>Tampilkan error sesuai<br/>Fallback Page di Dev Spec"]
@@ -3017,7 +3341,18 @@ flowchart TD
     L -- Ya --> M2
     L -- Tidak --> N
     N -- Ya --> O
-    N -- Tidak --> P;
+    N -- Tidak --> P
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
+    classDef endnode fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,E,F,G,I,K2,M2,O process;
+    class J,L,N decision;
+    class P link;
+    class B,D,H,K,M tag;
 ```
 
 ---
@@ -3026,15 +3361,28 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A(["Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan"])
+    A([Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan])
+    B[/User Story/]
     C["(Pengguna)<br/>Klik button Hapus Perusahaan"]
+    D[/User Story/]
     E["(Sistem)<br/>Menampilkan ringkasan dampak penghapusan"]
     F["(Pengguna)<br/>Menekan tombol setuju hapus perusahaan"]
+    G[/User Story/]
     H["(Pengguna)<br/>Mengetik Nama Perusahaan sebagai konfirmasi"]
+    I[/User Story/]
     J["(Pengguna)<br/>Klik tombol konfirmasi"]
     K["(Sistem)<br/>Menghapus perusahaan dari daftar perusahaan"]
-    M(["End<br/>(Sistem)<br/>Menampilkan pesan berhasil hapus perusahaan"])
-    A --> C --> E --> F --> H --> J --> K --> M;
+    L[/User Story/]
+    M([End<br/>(Sistem)<br/>Menampilkan pesan berhasil hapus perusahaan])
+    A --> C --> E --> F --> H --> J --> K --> M
+    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
+    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
+    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
+    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
+    class A start;
+    class C,E,F,H,J,K process;
+    class M end;
+    class B,D,G,I,L tag;
 ```
 
 ---
@@ -3990,6 +4338,9 @@ flowchart TD
     I --> J[Sistem menyimpan perubahan]
     J --> K[Sistem menampilkan feedback sukses]
     K --> L([Sistem kembali ke view mode dengan data terbaru])
+    %% Journey Flow
+    M["Journey: A → B → C → D → E → F → G → H → I → J → K → L"]
+    L --> M
 
 ```
 
@@ -4264,6 +4615,9 @@ flowchart TD
     F --> G{Terjadi error teknis saat penghapusan unit usaha?}
     G -->|Ya| H[Sistem menampilkan error sesuai fallback page]
     G -->|Tidak| I([Lanjut ke Happy Flow])
+    %% Journey Flow
+    J["Journey: A → B → C → D → E → F → G → I"]
+    I --> J
 
 ```
 
@@ -4281,6 +4635,9 @@ flowchart TD
     E --> F[Pengguna klik tombol konfirmasi]
     F --> G[Sistem menghapus unit usaha dari daftar]
     G --> H([Sistem menampilkan notifikasi berhasil hapus unit usaha dan kembali ke daftar unit usaha])
+    %% Journey Flow
+    I["Journey: A → B → C → D → E → F → G → H"]
+    H --> I
 
 ```
 
@@ -4542,6 +4899,9 @@ flowchart TD
     E --> F{Terdapat error teknis saat mengaktifkan unit usaha?}
     F -->|Ya| G[Sistem menampilkan error sesuai fallback page]
     F -->|Tidak| H([Lanjut ke Happy Flow])
+    %% Journey Flow
+    I["Journey: A → B → C → D → E → F → H"]
+    H --> I
 
 ```
 
@@ -4558,7 +4918,10 @@ flowchart TD
     D --> E[Pengguna menekan tombol Ya, Aktifkan]
     E --> F[Sistem memproses perubahan status unit usaha menjadi aktif]
     F --> G[Sistem menampilkan feedback sukses dan memperbarui tampilan status]
-    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi 'Aktif'])
+    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi "Aktif"])
+    %% Journey Flow
+    I["Journey: A → B → C → D → E → F → G → H"]
+    H --> I
 
 ```
 
@@ -4569,13 +4932,16 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([Pengguna berada di halaman detail unit usaha dengan status aktif])
-    A--> B[Sistem menampilkan status unit usaha Aktif]
+        --> B[Sistem menampilkan status unit usaha Aktif]
     B --> C[Pengguna klik tombol Nonaktifkan]
     C --> D[Sistem menampilkan modal konfirmasi nonaktifkan]
     D --> E[Pengguna menekan tombol Ya Nonaktifkan]
     E --> F{Terdapat error teknis saat menonaktifkan unit usaha?}
     F -->|Ya| G[Sistem menampilkan error sesuai fallback page]
     F -->|Tidak| H([Lanjut ke Happy Flow])
+    %% Journey Flow
+    I["Journey: A → B → C → D → E → F → H"]
+    H --> I
 
 ```
 
@@ -4592,7 +4958,10 @@ flowchart TD
     D --> E[Pengguna menekan tombol Ya Nonaktifkan]
     E --> F[Sistem memproses perubahan status unit usaha menjadi nonaktif]
     F --> G[Sistem menampilkan feedback sukses dan memperbarui tampilan status]
-    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi 'Nonaktif'])
+    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi "Nonaktif"])
+    %% Journey Flow
+    I["Journey: A → B → C → D → E → F → G → H"]
+    H --> I
 
 ```
 
