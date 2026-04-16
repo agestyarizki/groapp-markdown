@@ -599,30 +599,25 @@ flowchart TD
 ```mermaid
 flowchart TD
     START([Start]):::start
-    A["**(Pengguna)**\nberhasil login pertamakali"]:::pengguna
-    B["**(Sistem)**\nMenampilkan screen 1\nwelcome screen"]:::sistem
-    C["**(Pengguna)**\nKlik lanjutkan"]:::pengguna
-    D["**(Sistem)**\nMenampilkan Intro Screen 2\nKenali Hierarki"]:::sistem
-    E["**(Pengguna)**\nKlik lanjutkan"]:::pengguna
-    F["**(Sistem)**\nMenampilkan Intro Screen 3\nSiap Mulai"]:::sistem
-    G["**(Pengguna)**\nKlik Mulai Onboarding"]:::pengguna
-    H["**(Sistem)**\nMenampilkan form ruang kerja"]:::sistem
-    I["**(Pengguna)**\nIsi nama Ruang Kerja"]:::userStory
-    J["**(Pengguna)**\nKlik button Lanjutkan"]:::userStory
-    K["**(Pengguna)**\nMengisi data perusahaan"]:::userStory
-    L["**(Pengguna)**\nKlik Lanjutkan"]:::userStory
-    M["**(Pengguna)**\nMengisi data Unit Usaha"]:::userStory
-    N["**(Pengguna)**\nKlik Lanjutkan"]:::userStory
-    O["**(Sistem)**\nMenampilkan halaman preview\nentitas yang telah dibuat"]:::sistem
-    P["**(Pengguna)**\nKlik Simpan"]:::userStory
-    Q["**(Sistem)**\nMenampilkan notifikasi sukses"]:::userStory
-    END_NODE(["**(Sistem)**\nMenampilkan halaman\ndetail perusahaan"]):::end
+    A["**(Pengguna)** berhasil login pertamakali"]:::pengguna
+    B["**(Sistem)** Menampilkan screen 1 welcome screen"]:::sistem
+    C["**(Pengguna)** Klik lanjutkan"]:::pengguna
+    D["**(Sistem)** Menampilkan Intro Screen 2 Kenali Hierarki"]:::sistem
+    E["**(Pengguna)** Klik lanjutkan"]:::pengguna
+    F["**(Sistem)** Menampilkan Intro Screen 3 Siap Mulai"]:::sistem
+    G["**(Pengguna)** Klik Mulai Onboarding"]:::pengguna
+    H["**(Sistem)** Menampilkan form ruang kerja"]:::sistem
+    I["**(Pengguna)** Isi nama Ruang Kerja"]:::userStory
+    J["**(Pengguna)** Klik button Lanjutkan"]:::userStory
+    K["**(Pengguna)** Mengisi data perusahaan"]:::userStory
+    L["**(Pengguna)** Klik Lanjutkan"]:::userStory
+    M["**(Pengguna)** Mengisi data Unit Usaha"]:::userStory
+    N["**(Pengguna)** Klik Lanjutkan"]:::userStory
+    O["**(Sistem)** Menampilkan halaman preview entitas yang telah dibuat"]:::sistem
+    P["**(Pengguna)** Klik Simpan"]:::userStory
+    Q["**(Sistem)** Menampilkan notifikasi sukses"]:::userStory
+    END_NODE(["**(Sistem)** Menampilkan halaman detail perusahaan"]):::endnode
     START --> A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K --> L --> M --> N --> O --> P --> Q --> END_NODE
-    classDef start fill:#29ABE2,stroke:none,color:#fff,rx:20
-    classDef pengguna fill:#29ABE2,stroke:none,color:#fff
-    classDef sistem fill:#27AE60,stroke:none,color:#fff
-    classDef userStory fill:#27AE60,stroke:#F5A623,stroke-width:3px,color:#fff
-    classDef end fill:#E74C3C,stroke:none,color:#fff,rx:20
 ```
 
 ---
