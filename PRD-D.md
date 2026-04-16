@@ -1824,7 +1824,7 @@ Fitur Tambah Perusahaan bertujuan memberikan cara bagi pengguna untuk menambahka
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan"])
     B["(Pengguna)<br/>Klik Switcher di sidebar"]
     C["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
     D["(Pengguna)<br/>Klik button titik 3"]
@@ -1834,14 +1834,8 @@ flowchart TD
     H["(Pengguna)<br/>Mengisi data perusahaan"]
     I["(Pengguna)<br/>Klik Tambah Perusahaan"]
     J["(Sistem)<br/>Menampilkan notifikasi sukses"]
-    K([End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan])
-    A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff;
-    classDef end fill:#f4511e,stroke:#f4511e,color:#fff;
-    class A start;
-    class B,C,D,E,F,G,H,I,J process;
-    class K end;
+    K(["End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan"])
+    A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K;
 ```
 
 ---
@@ -1879,27 +1873,14 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan])
-    B[/User Story/]
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan"])
     C["(Pengguna)<br/>Klik Tambah Perusahaan"]
-    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Form Tambah Perusahaan"]
-    F[/User Story/]
     G["(Pengguna)<br/>Mengisi data perusahaan"]
-    H[/User Story/]
     I["(Pengguna)<br/>Klik Tambah Perusahaan"]
-    J[/User Story/]
     K["(Sistem)<br/>Menampilkan pesan sukses"]
-    L([End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan])
-    A --> C --> E --> G --> I --> K --> L
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,E,G,I,K process;
-    class L end;
-    class B,D,F,H,J tag;
+    L(["End<br/>(Sistem)<br/>Menampilkan halaman daftar perusahaan"])
+    A --> C --> E --> G --> I --> K --> L;
 ```
 
 ---
@@ -2288,17 +2269,11 @@ Aksi mengedit nama ruang kerja
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Klik Switcher di sidebar"]
-    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
-    F[/User Story/]
     G["(Pengguna)<br/>Klik button titik 3"]
-    H[/User Story/]
     I["(Sistem)<br/>Menampilkan dropdown menu"]
-    J[/User Story/]
     K["(Pengguna)<br/>Klik menu Daftar Perusahaan"]
-    L[/User Story/]
     M["(Sistem)<br/>Menampilkan halaman daftar Perusahaan"]
     N([End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan])
     A --> C --> E --> G --> I --> K --> M --> N
@@ -2319,15 +2294,10 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Klik Switcher di sidebar"]
-    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
-    F[/User Story/]
     G["(Pengguna)<br/>Klik button titik 3"]
-    H[/User Story/]
     I["(Sistem)<br/>Menampilkan dropdown menu"]
-    J[/User Story/]
     K["(Pengguna)<br/>Klik menu Daftar Perusahaan"]
     L{{"Status akses user ke<br/>Daftar Perusahaan<br/>masih valid?"}}
     M["(Sistem)<br/>Menampilkan pesan error yang sesuai"]
@@ -2359,13 +2329,9 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Klik profil akun"]
-    D[/User Story/]
     E["(Sistem)<br/>Menampilkan dropdown menu"]
-    F[/User Story/]
     G["(Pengguna)<br/>Klik menu daftar perusahaan"]
-    H[/User Story/]
     I["(Sistem)<br/>Menampilkan halaman daftar Perusahaan"]
     J([End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan])
     A --> C --> E --> G --> I --> J
@@ -2600,10 +2566,8 @@ Perusahaan aktif (dipilih dari Daftar Perusahaan)
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Memilih salah satu Perusahaan<br/>dari Daftar Perusahaan"]
     D{{"Status akses user ke<br/>perusahaan masih valid?"}}
-    E[/User Story/]
     F["(Sistem)<br/>Menampilkan Pesan error"]
     G{{"Terdapat error teknis saat<br/>memuat detail perusahaan?"}}
     H["(Sistem)<br/>Tampilkan error sesuai<br/>Fallback Page di Gen Spec"]
@@ -2632,9 +2596,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman Daftar Perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Memilih salah satu Perusahaan<br/>dari Daftar Perusahaan"]
-    D[/User Story/]
     E["(Sistem)<br/>Menampilkan Halaman Detail Perusahaan"]
     F([End<br/>(Pengguna)<br/>Melihat halaman detail perusahaan])
     A --> C --> E --> F
@@ -2910,7 +2872,6 @@ flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
     B["(Pengguna)<br/>Klik Profil Perusahaan"]
     C["(Sistem)<br/>Menampilkan halaman profil perusahaan"]
-    D[/User Story/]
     E["(Pengguna)<br/>Klik Edit pada section data"]
     F["(Sistem)<br/>Tampilkan Mode Edit"]
     G["(Pengguna)<br/>Mengubah data"]
@@ -2920,7 +2881,6 @@ flowchart TD
     K["(Sistem)<br/>Menampilkan informasi tidak tersimpan<br/>dan kembali ke view mode"]
     L([End<br/>Perubahan dibatalkan])
     M{{"Data/struktur perusahaan<br/>valid?"}}
-    N[/User Story/]
     O["(Sistem)<br/>Menampilkan pesan validasi error<br/>dan field yang perlu diperbaiki"]
     P{{"Terdapat error teknis<br/>saat menyimpan?"}}
     Q["(Sistem)<br/>Tampilkan error sesuai<br/>Fallback Page di Gen Spec"]
@@ -2953,18 +2913,13 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Klik Profil Perusahaan"]
     D["(Sistem)<br/>Menampilkan halaman profil<br/>perusahaan view mode"]
-    E[/User Story/]
     F["(Pengguna)<br/>Klik Edit pada section<br/>data profil perusahaan"]
     G["(Sistem)<br/>Tampilkan Mode Edit pada<br/>section yang diklik"]
-    H[/User Story/]
     I["(Pengguna)<br/>Mengubah data"]
-    J[/User Story/]
     K["(Pengguna)<br/>Klik Simpan Perubahan"]
     L["(Sistem)<br/>Menampilkan modal konfirmasi perubahan"]
-    M[/User Story/]
     N["(Pengguna)<br/>Klik Konfirmasi"]
     O["(Sistem)<br/>Simpan perubahan"]
     P["(Sistem)<br/>Tampilkan feedback sukses"]
@@ -3313,19 +3268,14 @@ dengan adanya fitur non aktifkan perusahaan ini jika ada user yang mau menghapus
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Klik spot Hapus Perusahaan"]
-    D[/User Story/]
     E["(Sistem)<br/>Menampilkan ringkasan dampak penghapusan"]
     F["(Pengguna)<br/>Menekan tombol setuju hapus perusahaan"]
     G["(Pengguna)<br/>Mengetik Nama Perusahaan sebagai konfirmasi"]
-    H[/User Story/]
     I["(Pengguna)<br/>Klik tombol konfirmasi"]
     J{{"Perusahaan telah<br/>memiliki transaksi?"}}
-    K[/User Story/]
     K2["(Sistem)<br/>Menampilkan pesan tidak dapat menghapus<br/>perusahaan karena memiliki transaksi terkait"]
     L{{"Unit sudah di-assign ke perusahaan<br/>dan memiliki transaksi?"}}
-    M[/User Story/]
     M2["(Sistem)<br/>Menampilkan pesan tidak dapat menghapus<br/>perusahaan karena Unit sudah memiliki transaksi"]
     N{{"Terdapat error teknis saat<br/>Penghapusan Perusahaan?"}}
     O["(Sistem)<br/>Tampilkan error sesuai<br/>Fallback Page di Dev Spec"]
@@ -3357,17 +3307,12 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan])
-    B[/User Story/]
     C["(Pengguna)<br/>Klik button Hapus Perusahaan"]
-    D[/User Story/]
     E["(Sistem)<br/>Menampilkan ringkasan dampak penghapusan"]
     F["(Pengguna)<br/>Menekan tombol setuju hapus perusahaan"]
-    G[/User Story/]
     H["(Pengguna)<br/>Mengetik Nama Perusahaan sebagai konfirmasi"]
-    I[/User Story/]
     J["(Pengguna)<br/>Klik tombol konfirmasi"]
     K["(Sistem)<br/>Menghapus perusahaan dari daftar perusahaan"]
-    L[/User Story/]
     M([End<br/>(Sistem)<br/>Menampilkan pesan berhasil hapus perusahaan])
     A --> C --> E --> F --> H --> J --> K --> M
     classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
