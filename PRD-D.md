@@ -2268,23 +2268,15 @@ Aksi mengedit nama ruang kerja
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
     C["(Pengguna)<br/>Klik Switcher di sidebar"]
     E["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
     G["(Pengguna)<br/>Klik button titik 3"]
     I["(Sistem)<br/>Menampilkan dropdown menu"]
     K["(Pengguna)<br/>Klik menu Daftar Perusahaan"]
     M["(Sistem)<br/>Menampilkan halaman daftar Perusahaan"]
-    N([End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan])
-    A --> C --> E --> G --> I --> K --> M --> N
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,E,G,I,K,M process;
-    class N end;
-    class B,D,F,H,J,L tag;
+    N(["End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan"])
+    A --> C --> E --> G --> I --> K --> M --> N;
 ```
 
 ---
@@ -2293,7 +2285,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
     C["(Pengguna)<br/>Klik Switcher di sidebar"]
     E["(Sistem)<br/>Menampilkan Modal pilih perusahaan"]
     G["(Pengguna)<br/>Klik button titik 3"]
@@ -2308,18 +2300,7 @@ flowchart TD
     L -- Tidak --> M
     L -- Ya --> N
     N -- Ya --> O
-    N -- Tidak --> P
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
-    classDef error fill:#f4511e,stroke:#f4511e,color:#fff;
-    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,E,G,I,K,M,O process;
-    class L,N decision;
-    class P link;
-    class B,D,F,H,J tag;
+    N -- Tidak --> P;
 ```
 
 ---
@@ -2328,21 +2309,13 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
     C["(Pengguna)<br/>Klik profil akun"]
     E["(Sistem)<br/>Menampilkan dropdown menu"]
     G["(Pengguna)<br/>Klik menu daftar perusahaan"]
     I["(Sistem)<br/>Menampilkan halaman daftar Perusahaan"]
-    J([End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan])
-    A --> C --> E --> G --> I --> J
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,E,G,I process;
-    class J end;
-    class B,D,F,H tag;
+    J(["End<br/>(Pengguna)<br/>Melihat informasi dasar perusahaan"])
+    A --> C --> E --> G --> I --> J;
 ```
 
 ---
@@ -2565,7 +2538,7 @@ Perusahaan aktif (dipilih dari Daftar Perusahaan)
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman daftar perusahaan"])
     C["(Pengguna)<br/>Memilih salah satu Perusahaan<br/>dari Daftar Perusahaan"]
     D{{"Status akses user ke<br/>perusahaan masih valid?"}}
     F["(Sistem)<br/>Menampilkan Pesan error"]
@@ -2576,17 +2549,7 @@ flowchart TD
     D -- Tidak --> F
     D -- Ya --> G
     G -- Ya --> H
-    G -- Tidak --> I
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
-    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,F,H process;
-    class D,G decision;
-    class I link;
-    class B,E tag;
+    G -- Tidak --> I;
 ```
 
 ---
@@ -2595,19 +2558,11 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman Daftar Perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman Daftar Perusahaan"])
     C["(Pengguna)<br/>Memilih salah satu Perusahaan<br/>dari Daftar Perusahaan"]
     E["(Sistem)<br/>Menampilkan Halaman Detail Perusahaan"]
-    F([End<br/>(Pengguna)<br/>Melihat halaman detail perusahaan])
-    A --> C --> E --> F
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,E process;
-    class F end;
-    class B,D tag;
+    F(["End<br/>(Pengguna)<br/>Melihat halaman detail perusahaan"])
+    A --> C --> E --> F;
 ```
 
 ---
@@ -2869,7 +2824,7 @@ Sistem menyimpan dan menggunakan data perusahaan terbaru sebagai sumber kebenara
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail perusahaan"])
     B["(Pengguna)<br/>Klik Profil Perusahaan"]
     C["(Sistem)<br/>Menampilkan halaman profil perusahaan"]
     E["(Pengguna)<br/>Klik Edit pada section data"]
@@ -2891,19 +2846,7 @@ flowchart TD
     M -- Tidak --> O
     M -- Ya --> P
     P -- Ya --> Q
-    P -- Tidak --> R
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
-    classDef endnode fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class B,C,E,F,G,I,J,K,O,Q process;
-    class H,M,P decision;
-    class L endnode;
-    class R link;
-    class D,N tag;
+    P -- Tidak --> R;
 ```
 
 ---
@@ -2912,7 +2855,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman detail Perusahaan"])
     C["(Pengguna)<br/>Klik Profil Perusahaan"]
     D["(Sistem)<br/>Menampilkan halaman profil<br/>perusahaan view mode"]
     F["(Pengguna)<br/>Klik Edit pada section<br/>data profil perusahaan"]
@@ -2923,16 +2866,8 @@ flowchart TD
     N["(Pengguna)<br/>Klik Konfirmasi"]
     O["(Sistem)<br/>Simpan perubahan"]
     P["(Sistem)<br/>Tampilkan feedback sukses"]
-    Q([End<br/>(Sistem)<br/>Kembali ke View Mode dengan data terbaru])
-    A --> C --> D --> F --> G --> I --> K --> L --> N --> O --> P --> Q
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,D,F,G,I,K,L,N,O,P process;
-    class Q end;
-    class B,E,H,J,M tag;
+    Q(["End<br/>(Sistem)<br/>Kembali ke View Mode dengan data terbaru"])
+    A --> C --> D --> F --> G --> I --> K --> L --> N --> O --> P --> Q;
 ```
 
 ---
@@ -3267,7 +3202,7 @@ dengan adanya fitur non aktifkan perusahaan ini jika ada user yang mau menghapus
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan"])
     C["(Pengguna)<br/>Klik spot Hapus Perusahaan"]
     E["(Sistem)<br/>Menampilkan ringkasan dampak penghapusan"]
     F["(Pengguna)<br/>Menekan tombol setuju hapus perusahaan"]
@@ -3286,18 +3221,7 @@ flowchart TD
     L -- Ya --> M2
     L -- Tidak --> N
     N -- Ya --> O
-    N -- Tidak --> P
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef decision fill:#fbc02d,stroke:#d69e00,color:#000;
-    classDef endnode fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef link fill:#7e57c2,stroke:#7e57c2,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,E,F,G,I,K2,M2,O process;
-    class J,L,N decision;
-    class P link;
-    class B,D,H,K,M tag;
+    N -- Tidak --> P;
 ```
 
 ---
@@ -3306,23 +3230,15 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan])
+    A(["Start<br/>(Pengguna)<br/>Berada di halaman Detail perusahaan"])
     C["(Pengguna)<br/>Klik button Hapus Perusahaan"]
     E["(Sistem)<br/>Menampilkan ringkasan dampak penghapusan"]
     F["(Pengguna)<br/>Menekan tombol setuju hapus perusahaan"]
     H["(Pengguna)<br/>Mengetik Nama Perusahaan sebagai konfirmasi"]
     J["(Pengguna)<br/>Klik tombol konfirmasi"]
     K["(Sistem)<br/>Menghapus perusahaan dari daftar perusahaan"]
-    M([End<br/>(Sistem)<br/>Menampilkan pesan berhasil hapus perusahaan])
-    A --> C --> E --> F --> H --> J --> K --> M
-    classDef start fill:#1e88e5,stroke:#1e88e5,color:#fff,rx:20,ry:20;
-    classDef process fill:#1faa59,stroke:#1faa59,color:#fff,rx:8,ry:8;
-    classDef end fill:#f4511e,stroke:#f4511e,color:#fff,rx:20,ry:20;
-    classDef tag fill:#fbc02d,stroke:#d69e00,color:#000;
-    class A start;
-    class C,E,F,H,J,K process;
-    class M end;
-    class B,D,G,I,L tag;
+    M(["End<br/>(Sistem)<br/>Menampilkan pesan berhasil hapus perusahaan"])
+    A --> C --> E --> F --> H --> J --> K --> M;
 ```
 
 ---
@@ -4839,9 +4755,6 @@ flowchart TD
     E --> F{Terdapat error teknis saat mengaktifkan unit usaha?}
     F -->|Ya| G[Sistem menampilkan error sesuai fallback page]
     F -->|Tidak| H([Lanjut ke Happy Flow])
-    %% Journey Flow
-    I["Journey: A → B → C → D → E → F → H"]
-    H --> I
 
 ```
 
@@ -4858,10 +4771,8 @@ flowchart TD
     D --> E[Pengguna menekan tombol Ya, Aktifkan]
     E --> F[Sistem memproses perubahan status unit usaha menjadi aktif]
     F --> G[Sistem menampilkan feedback sukses dan memperbarui tampilan status]
-    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi "Aktif"])
-    %% Journey Flow
-    I["Journey: A → B → C → D → E → F → G → H"]
-    H --> I
+    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi 'Aktif'])
+
 
 ```
 
@@ -4898,10 +4809,7 @@ flowchart TD
     D --> E[Pengguna menekan tombol Ya Nonaktifkan]
     E --> F[Sistem memproses perubahan status unit usaha menjadi nonaktif]
     F --> G[Sistem menampilkan feedback sukses dan memperbarui tampilan status]
-    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi "Nonaktif"])
-    %% Journey Flow
-    I["Journey: A → B → C → D → E → F → G → H"]
-    H --> I
+    G --> H([Sistem tetap menampilkan halaman detail unit usaha dengan status berubah menjadi 'Nonaktif'])
 
 ```
 
